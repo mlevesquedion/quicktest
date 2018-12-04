@@ -23,7 +23,7 @@ def _success_result():
 def _failure_result(inputs, result, expected):
     return {
         'outcome': 'failure',
-        'info': f'Given {inputs}, expected {expected} but got {result}'
+        'info': f'Given {inputs}, expected {repr(expected)} but got {repr(result)}'
     }
 
 
