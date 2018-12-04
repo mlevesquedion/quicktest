@@ -62,7 +62,7 @@ def _print_failure_count(summary):
     failure_count = summary['failure_count']
     error_count = summary['error_count']
     if failure_count:
-        failure_ending = noun_number(failure_count)
+        failure_ending = noun_number(failure_count).upper()
         failure_part = f'{failure_count} FAILURE' + failure_ending
         error_part = f' ({error_count} ERRORS)' if error_count else ''
         print(failure_part + error_part)

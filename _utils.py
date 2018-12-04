@@ -1,2 +1,2 @@
 def noun_number(count):
-    return '' if count == 1 else 'S'
+    return '' if count == 1 else 's'
