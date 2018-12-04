@@ -2,7 +2,7 @@
 
 A nano-framework for quickly unit testing functions.
 
-Ideal for solving https://www.dailycodingproblem.com/ challenges and the like.
+Useful as a helper for solving https://www.dailycodingproblem.com/ challenges and the like.
 
 
 ## Future work
