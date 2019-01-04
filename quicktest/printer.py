@@ -36,20 +36,27 @@ def _print_summary_content(summary):
 
 
 @_with_printed_prefix(_SEPARATOR)
-def _print_labeled_list(label, lst):
+def _print_labeled_list(label, lst, f=lambda x: x):
     print(label.upper())
     for x in lst:
-        print(x)
+        print(f(x))
 
 
 def _print_failures(failures):
+    def print_failure(f):
+        return Colorizer.format(
+            f'Given <{f["inputs"]}>, expected <{repr(f["expected"])}> but got <{repr(f["actual"])}>',
+            BRIGHT_BLUE, BRIGHT_GREEN, BRIGHT_YELLOW)
     if failures:
-        _print_labeled_list('failures', failures)
+        _print_labeled_list('failures', failures, print_failure)
 
 
 def _print_errors(errors):
+    def print_error(e):
+        return Colorizer.format(
+            f'Given <{e["inputs"]}>, caught exception "<{e["error"]}>"', BRIGHT_BLUE, BRIGHT_RED)
     if errors:
-        _print_labeled_list('errors', errors)
+        _print_labeled_list('errors', errors, print_error)
 
 
 def _print_test_count(summary):

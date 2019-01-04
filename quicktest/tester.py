@@ -23,12 +23,15 @@ def _success_result():
 def _failure_result(inputs, result, expected):
     return {
         'outcome': 'failure',
-        'info': f'Given {inputs}, expected {repr(expected)} but got {repr(result)}'
+        'inputs': inputs,
+        'expected': expected,
+        'actual': result
     }
 
 
 def _error_result(inputs, e):
     return {
         'outcome': 'error',
-        'info': f'Given {inputs}, caught exception "{e}"'
+        'inputs': inputs,
+        'error': e
     }

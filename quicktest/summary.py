@@ -13,9 +13,9 @@ def summarize(results):
             summary['success_count'] += 1
         if outcome == 'failure':
             summary['failure_count'] += 1
-            summary['failures'].append(result['info'])
+            summary['failures'].append(result)
         if outcome == 'error':
             summary['failure_count'] += 1
             summary['error_count'] += 1
-            summary['errors'].append(result['info'])
+            summary['errors'].append(result)
     return summary
