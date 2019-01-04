@@ -21,7 +21,9 @@ if __name__ == '__main__':
         [
             ('()())()', 1),
             (')(', 2),
-            # This next test is clearly erroneous and is meant to show how failures are printed
-            ('()', "2")
+            # This next test will cause a failure
+            ('()', "2"),
+            # This next test will cause an error
+            (1, '')
         ]
     )
