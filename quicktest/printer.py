@@ -1,6 +1,10 @@
 from functools import wraps
-from _utils import noun_number
-from _summary import summarize
+from clirainbow import Colorizer, BRIGHT_BLUE, BRIGHT_GREEN, BRIGHT_RED, BRIGHT_YELLOW
+from quicktest.utils import noun_number
+from quicktest.summary import summarize
+
+
+Colorizer = Colorizer()
 
 
 _SEPARATOR = '=' * 50
@@ -50,12 +54,12 @@ def _print_errors(errors):
 
 def _print_test_count(summary):
     test_count = summary['test_count']
-    print(f'{test_count} RAN')
+    Colorizer.print(f'<{test_count}> RAN', BRIGHT_BLUE)
 
 
 def _print_success_count(summary):
     success_count = summary['success_count']
-    print(f'{success_count} OK')
+    Colorizer.print(f'<{success_count}> OK', BRIGHT_GREEN)
 
 
 def _print_failure_count(summary):
@@ -63,6 +67,9 @@ def _print_failure_count(summary):
     error_count = summary['error_count']
     if failure_count:
         failure_ending = noun_number(failure_count).upper()
-        failure_part = f'{failure_count} FAILURE' + failure_ending
-        error_part = f' ({error_count} ERRORS)' if error_count else ''
+        error_ending = noun_number(error_count).upper()
+        failure_part = Colorizer.format(
+            f'<{failure_count}> FAILURE', BRIGHT_YELLOW) + failure_ending
+        error_part = Colorizer.format(
+            f' (<{error_count}> ERROR{error_ending})', BRIGHT_RED) if error_count else ''
         print(failure_part + error_part)

@@ -1,4 +1,4 @@
-from _utils import noun_number
+from quicktest.utils import noun_number
 
 
 def test_given_one_should_return_empty_suffix():

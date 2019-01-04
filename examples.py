@@ -1,4 +1,4 @@
-import quicktest
+from quicktest import test
 
 
 def parens(s):
@@ -16,7 +16,7 @@ def parens(s):
 
 
 if __name__ == '__main__':
-    quicktest.test(
+    test(
         parens,
         [
             ('()())()', 1),

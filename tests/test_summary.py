@@ -1,4 +1,4 @@
-from _summary import summarize
+from quicktest.summary import summarize
 
 
 def test_summarize():

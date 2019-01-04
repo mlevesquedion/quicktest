@@ -1,5 +1,5 @@
-from _tester import run_test
-from _printer import print_summary
+from quicktest.tester import run_test
+from quicktest.printer import print_summary
 
 
 def test(f, cases):

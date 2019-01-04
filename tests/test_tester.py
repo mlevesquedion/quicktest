@@ -1,4 +1,4 @@
-from _tester import run_test
+from quicktest.tester import run_test
 
 
 def add3(a, b, c):
