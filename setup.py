@@ -8,7 +8,7 @@ with open(os.path.join(HERE, "README.md")) as readme:
 
 setup(
     name="quicktest",
-    version="0.1.0",
+    version="0.1.1",
     description="Easily test pure functions.",
     long_description=README,
     url="https://github.com/mlevesquedion/quicktest",

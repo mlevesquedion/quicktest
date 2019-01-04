@@ -1,13 +1,13 @@
 from functools import wraps
 from clirainbow import Colorizer, BRIGHT_BLUE, BRIGHT_GREEN, BRIGHT_RED, BRIGHT_YELLOW
-from quicktest.utils import noun_number
+from quicktest.util import noun_number, terminal_width
 from quicktest.summary import summarize
 
 
 Colorizer = Colorizer()
 
 
-_SEPARATOR = '=' * 50
+_SEPARATOR = '=' * terminal_width()
 
 
 def print_summary(results):
