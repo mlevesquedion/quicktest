@@ -1,11 +1,9 @@
 from functools import wraps
-from clirainbow import Colorizer, BRIGHT_BLUE, BRIGHT_GREEN, BRIGHT_RED, BRIGHT_YELLOW
+from clirainbow import Colorizer, BRIGHT_BLUE, BRIGHT_GREEN, BRIGHT_RED, BRIGHT_YELLOW, sanitize
 from quicktest.util import noun_number, terminal_width
 from quicktest.summary import summarize
 
-
 Colorizer = Colorizer()
-
 
 _SEPARATOR = '=' * terminal_width()
 
@@ -24,7 +22,9 @@ def _with_printed_prefix(sep):
         def wrapper(*args, **kwargs):
             print(sep)
             return func(*args, **kwargs)
+
         return wrapper
+
     return decorator
 
 
@@ -42,11 +42,16 @@ def _print_labeled_list(label, lst, f=lambda x: x):
         print(f(x))
 
 
+def _repr(x):
+    return sanitize(repr(x))
+
+
 def _print_failures(failures):
     def print_failure(f):
         return Colorizer.format(
-            f'Given <{f["inputs"]}>, expected <{repr(f["expected"])}> but got <{repr(f["actual"])}>',
+            f'Given <{f["inputs"]}>, expected <{_repr(f["expected"])}> but got <{_repr(f["actual"])}>',
             BRIGHT_BLUE, BRIGHT_GREEN, BRIGHT_YELLOW)
+
     if failures:
         _print_labeled_list('failures', failures, print_failure)
 
@@ -54,7 +59,8 @@ def _print_failures(failures):
 def _print_errors(errors):
     def print_error(e):
         return Colorizer.format(
-            f'Given <{e["inputs"]}>, caught exception "<{e["error"]}>"', BRIGHT_BLUE, BRIGHT_RED)
+            f'Given <{_repr(e["inputs"])}>, caught exception "<{_repr(e["error"])}>"', BRIGHT_BLUE, BRIGHT_RED)
+
     if errors:
         _print_labeled_list('errors', errors, print_error)
 

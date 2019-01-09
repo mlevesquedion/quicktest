@@ -15,6 +15,10 @@ def parens(s):
     return count + len(stack)
 
 
+class Example:
+    pass
+
+
 if __name__ == '__main__':
     test(
         parens,
@@ -24,6 +28,8 @@ if __name__ == '__main__':
             # This next test will cause a failure
             ('()', "2"),
             # This next test will cause an error
-            (1, '')
+            (1, ''),
+            # This next test shows that the bug involving reprs has been fixed
+            (Example(), Example())
         ]
     )
